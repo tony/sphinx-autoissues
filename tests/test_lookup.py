@@ -49,7 +49,7 @@ def pytest_funcarg__app(request):
     """
     request.applymarker(pytest.mark.mock_lookup)
     request.applymarker(pytest.mark.build_app)
-    return request.getfuncargvalue("app")
+    return request.getfixturevalue("app")
 
 
 @pytest.mark.with_content("#10")
