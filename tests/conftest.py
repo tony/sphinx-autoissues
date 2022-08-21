@@ -161,7 +161,7 @@ def content(request: pytest.FixtureRequest):
 
     Test modules may override this funcarg to add their own content.
     """
-    content_mark = request.keywords.get("with_content")
+    content_mark = request.get_markers("with_content")
     if content_mark:
         return content_mark.args[0]
     else:
@@ -287,7 +287,7 @@ def confoverrides(request: pytest.FixtureRequest):
 
     Test modules may override this funcarg to return custom ``confoverrides``.
     """
-    confoverrides_marker = request.keywords.get("confoverrides")
+    confoverrides_marker = request.get_markers.get("confoverrides")
     return confoverrides_marker.kwargs if confoverrides_marker else {}
 
 
@@ -325,10 +325,10 @@ def app(request: pytest.FixtureRequest):
         freshenv=True,
     )
     request.addfinalizer(reset_global_state)
-    if "mock_lookup" in request.keywords:
+    if "mock_lookup" in request.get_markers:
         lookup_mock_issue = request.getfixturevalue("mock_lookup")
         app.connect(str("issuetracker-lookup-issue"), lookup_mock_issue)
-    if "build_app" in request.keywords:
+    if "build_app" in request.get_markers:
         app.build()
     return app
 
@@ -346,7 +346,7 @@ def issue(request: pytest.FixtureRequest):
     Test modules may override this funcarg to provide their own issues for
     tests.
     """
-    issue_marker = request.keywords.get("with_issue")
+    issue_marker = request.get_markers.get("with_issue")
     if issue_marker:
         return Issue(*issue_marker.args, **issue_marker.kwargs)
     return None
