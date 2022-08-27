@@ -10,13 +10,13 @@
 
 usage
 configuration
-customization
 ```
 
 ```{toctree}
 :caption: Project
 :hidden:
 
+api
 history
 GitHub <https://github.com/tony/sphinx-autoissues>
 ```

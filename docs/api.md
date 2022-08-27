@@ -1,4 +1,4 @@
-# Customization
+# API
 
 ```{eval-rst}
 .. module:: sphinx_autoissues
@@ -29,7 +29,7 @@ leave it unset, and connect your own callback to the event {ref}`issuetracker-lo
 
 Refer to the [builtin trackers] for examples.
 
-## Supporting classes
+## Structures
 
 ```{eval-rst}
 .. autoclass:: TrackerConfig
@@ -43,14 +43,12 @@ Refer to the [builtin trackers] for examples.
       The url of the issue tracker as string *without* any trailing slash, or
       ``None``, if there is no url configured for this tracker.  See
       :confval:`issuetracker_url`.
-
-   .. versionadded:: 0.8
 ```
 
 ```{eval-rst}
 .. autoclass:: Issue
 
-   A :func:`~collections.namedtuple` providing issue information.
+   A :class:`~typing.NamedTuple` providing issue information.
 
    .. attribute:: id
 
@@ -75,8 +73,6 @@ Refer to the [builtin trackers] for examples.
    .. attribute:: closed
 
       ``True``, if the issue is closed, ``False`` otherwise.
-
-   .. versionadded:: 0.8
 ```
 
 [builtin trackers]:

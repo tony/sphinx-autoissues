@@ -5,15 +5,14 @@
 Add `sphinx_autoissues` to the configuration value {confval}`extensions` to enable this extensions
 and configure the extension:
 
-````{confval}
 ```{eval-rst}
 .. confval:: issuetracker
 
-The issuetracker to use.  As of now, the following trackers are
-supported:
+   The issuetracker to use.  As of now, the following trackers are
+   supported:
 
-- `github`: The issue tracker of https://github.com.
-````
+   - `github`: The issue tracker of https://github.com.
+```
 
 ```{eval-rst}
 .. confval:: issuetracker_project
@@ -26,13 +25,10 @@ supported:
 
        In case of GitHub, the project name must include the name
        of the user or organization, the project belongs to.  For instance, the
-       project name of Sphinx_ itself is not just `sphinx`, but
-       `birkenfeld/sphinx` instead.  If the user name is missing, a
+       project name of `Sphinx <https://sphinx-doc.org>`_ itself is not just ``sphinx``, but
+       ``birkenfeld/sphinx`` instead.  If the user name is missing, a
        :exc:`~exceptions.ValueError` will be raised when an issue is to be
        resolved the first time.
-
-       .. _Sphinx: https://sphinx-doc.org
-
 ```
 
 ```{eval-rst}
@@ -62,7 +58,7 @@ supported:
 .. confval:: issuetracker_plaintext_issues
 
    If `True` (the default) issue references are extracted from plain text by
-   turning issue ids like `#10` into references to the corresponding issue.
+   turning issue ids like ``#10`` into references to the corresponding issue.
    Issue ids in any kind of literal text (e.g. `inline literals` or code
    blocks) are ignored.  If `False`, no issue references are created from
    plain text.
@@ -78,9 +74,9 @@ however change the pattern, which is used to find issue references:
 .. confval:: issuetracker_issue_pattern
 
     A regular expression, which is used to find and parse issue references.
-    Defaults to `r'#(\d+)'`.  If changed to `r'gh-(\d+)'` for instance,
-    this extension would not longer recognize references like `#10`, but
-    instead parse references like `gh-10`.  The pattern must contain only a
+    Defaults to ``r'#(\d+)'``.  If changed to ``r'gh-(\d+)'`` for instance,
+    this extension would not longer recognize references like `#10``, but
+    instead parse references like ``gh-10``.  The pattern must contain only a
     single group, which matches the issue id.
 ```
 
@@ -90,16 +86,15 @@ title:
 ```{eval-rst}
 .. confval:: issuetracker_title_template
 
-    A `format string`_ template for the title of references created from
-    plaintext issue ids.  The format string gets the :class:`Issue` object
-    corresponding to the referenced issue in the `issue` key, you may use any
-    attributes of this object in your format string.  You can for instance
-    include the issue title and the issue id::
+   A `format string <https://docs.python.org/3/library/string.html#format-string-syntax>`_
+   template for the title of references created from plaintext issue ids.
+   The format string gets the :class:`Issue` object corresponding to the
+   referenced issue in the ``issue`` key, you may use any attributes of
+   this object in your format string.  You can for instance include the
+   issue title and the issue id::
 
-      issuetracker_title_template = '{issue.title} ({issue.id})'
+     issuetracker_title_template = '{issue.title} ({issue.id})'
 
-    If unset, the whole text matched by :confval:`issuetracker_issue_pattern` is
-    used as reference title.
-
-.. _format string: https://docs.python.org/3/library/string.html#format-string-syntax
+   If unset, the whole text matched by :confval:`issuetracker_issue_pattern` is
+   used as reference title.
 ```

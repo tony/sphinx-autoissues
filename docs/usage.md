@@ -13,15 +13,14 @@ After configuring the {confval}`tracker <issuetracker>` and the
    Create a reference to the given issue.  This role understands the standard
    :ref:`cross-referencing syntax <xref-syntax>` used by Sphinx.
 
-   An explicit title given to this role is interpreted as `format string`_,
+   An explicit title given to this role is interpreted as
+   a `format string <https://docs.python.org/3/library/string.html#format-string-syntax>`_
    which is formatted with the :class:`Issue` object representing the
    referenced issue available by the key ``issue``.  You may use any attribute
    of the :class:`Issue` object in your format string.  Use this feature to
    include information about the referenced issue in the reference title.  For
    instance, you might use ``:issue:`{issue.title} (#{issue.id}) <10>``` to use
    the title and the id of the issue ``10`` as reference title.
-
-   .. versionadded:: 0.9
 ````
 
 Information about the issue (like the title) is retrieved from the configured issue tracker. Aside
