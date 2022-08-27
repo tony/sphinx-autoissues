@@ -11,31 +11,6 @@ The issuetracker to use.  As of now, the following trackers are
 supported:
 
 - `github`: The issue tracker of https://github.com.
-- `bitbucket`: The issue tracker of https://bitbucket.org.
-- `launchpad`: The issue tracker of https://launchpad.net.  To use this
- issue tracker, launchpadlib_ must be installed. This tracker is not
- supported on Python 3, because launchpadlib_ is not yet available for
- Python 3.
-- `google code`: The issue tracker of http://code.google.com.
-- `debian`: The Debian issue tracker at http://bugs.debian.org.  To use
- this issue tracker, debianbts_ and SOAPpy_ must be installed. This issue
- tracker is not available on Python 3, because neither debianbts_ nor
- SOAPpy_ are available for Python 3 yet.
-- `jira`: A Jira_ instance.  With this issue tracker
- :confval:`issuetracker_url` must be set to the base url of the Jira
- instance to use.  Otherwise a :exc:`~exceptions.ValueError` is raised when
- resolving the first issue reference.
-- `redmine`: Redmine issue tracker. Before using this issuetracker, you
- must install `python-redmine`. :confval:`issuetracker_url` must be
- set to the base url of the redmine installation. If you require
- authentication, you can either set :confval:`issuetracker_redmine_key` to
- use the key based authentication, or set
- :confval:`issuetracker_redmine_username` and
- :confval:`issuetracker_redmine_password` accordingly. You can also change
- some of the `requests` parameters with a dict on
- :confval:`issuetracker_redmine_requests`, for example, to disable
- SSLVerify errors on a self-signed certificate server, you can set this to
- `{'verify': False}`.
 ```
 
 ````{confval} issuetracker_project
