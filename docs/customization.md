@@ -10,7 +10,7 @@ leave it unset, and connect your own callback to the event {ref}`issuetracker-lo
 
 (issuetracker-lookup-issue)=
 
-## Event: Lookup issue
+## Events
 
 ```{eval-rst}
 .. confval:: issuetracker-lookup-issue(app, tracker_config, issue_id)
@@ -48,7 +48,7 @@ Refer to the [builtin trackers] for examples.
 ```
 
 ```{eval-rst}
-.. class:: Issue
+.. autoclass:: Issue
 
    A :func:`~collections.namedtuple` providing issue information.
 
@@ -80,4 +80,4 @@ Refer to the [builtin trackers] for examples.
 ```
 
 [builtin trackers]:
-  https://github.com/lunaryorn/sphinx_autoissues/blob/master/sphinx_autoissues/resolvers.py
+  https://github.com/tony/sphinx-autoissues/blob/master/sphinx_autoissues/resolvers.py

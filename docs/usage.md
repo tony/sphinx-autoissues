@@ -1,11 +1,13 @@
 # Usage and operation
 
 After configuring the {confval}`tracker <issuetracker>` and the
-{confval}`project <issuetracker_project>` (and possibly the {confval}`tracker
-url <issuetracker_url>`), you can reference issues in the issue tracker with
-the {rst:role}`issue` role:
+{confval}`project <issuetracker_project>` (and possibly the
+{confval}`tracker url <issuetracker_url>`), you can reference issues in the issue tracker with the
+{rst:role}`issue` role:
 
 ````{eval-rst}
+.. currentmodule:: sphinx_autoissues
+
 .. rst:role:: issue
 
    Create a reference to the given issue.  This role understands the standard
@@ -22,16 +24,14 @@ the {rst:role}`issue` role:
    .. versionadded:: 0.9
 ````
 
-Information about the issue (like the title) is retrieved from the configured
-issue tracker.  Aside of providing it for reference titles, the extension also
-uses this information to mark closed issues in HTML output by striking the
-reference text through.  For this purpose, a stylesheet is added to the
-generated HTML.
+Information about the issue (like the title) is retrieved from the configured issue tracker. Aside
+of providing it for reference titles, the extension also uses this information to mark closed issues
+in HTML output by striking the reference text through. For this purpose, a stylesheet is added to
+the generated HTML.
 
-You can provide your own styles for issue references by adding them to the
-`.xref.issue` and `.xref.issue.closed` selectors (the latter are closed
-issues).  For instance, the following stylesheet uses green color for open, and
-red color for closed issues:
+You can provide your own styles for issue references by adding them to the `.xref.issue` and
+`.xref.issue.closed` selectors (the latter are closed issues). For instance, the following
+stylesheet uses green color for open, and red color for closed issues:
 
 ```
 .xref.issue {
@@ -45,10 +45,9 @@ red color for closed issues:
 
 ## Issue ids in plain text
 
-If {confval}`issuetracker_plaintext_issues` is `True`, this extension also
-searches for issue ids like `#10` in plain text and turns them into issue
-references.  Issue ids in literal text (e.g. inline literals or code blocks)
-are ignored.  The pattern used to extract issue ids from plain text can be
-configured using {confval}`issuetracker_issue_pattern`.
+If {confval}`issuetracker_plaintext_issues` is `True`, this extension also searches for issue ids
+like `#10` in plain text and turns them into issue references. Issue ids in literal text (e.g.
+inline literals or code blocks) are ignored. The pattern used to extract issue ids from plain text
+can be configured using {confval}`issuetracker_issue_pattern`.
 
 [format string]: http://docs.python.org/library/string.html#format-string-syntax
