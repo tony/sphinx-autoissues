@@ -34,39 +34,12 @@ tracker belongs.  Defaults to the value of :confval:`project`.
 
 The base url of the issue tracker::
 
-  issuetracker = 'jira'
-  issuetracker_url = 'https://studio.atlassian.com'
+  issuetracker = 'github'
+  issuetracker_url = 'https://github.com/vcs-python/libvcs'
 
 Required by all issue trackers which do not only have a single instance, but
 many different instances on many different sites.
 
-```
-
-```{confval} issuetracker_redmine_key
-
-The API Key that is set on the Redmine server accounts page. If
-authentication failed, an error will be thrown and the build will fail.
-```
-
-```{confval} issuetracker_redmine_username
-
-You usually don't need this to be set if you are using the API key, but if
-you do use this, do set the password configuration value as well.
-```
-
-```{confval} issuetracker_redmine_password
-
-Works together with :confval:`issuetracker_redmine_username`.
-```
-
-```{confval} issuetracker_redmine_requests
-
-`python-redmine` heavily uses the `requests` module for all its
-communications with the redmine server. If you do need to send some values
-down to the Requests module, you need to configure this with a dict. By
-default, this is an empty dict. An useful usecase for this parameter is to
-set the `verify` value to `False` so as to disable certificate
-verification on SSL requests on self signed server, for example.
 ```
 
 ## Plaintext issues
@@ -112,10 +85,6 @@ If unset, the whole text matched by :confval:`issuetracker_issue_pattern` is
 used as reference title.
 ```
 
-[debianbts]: http://pypi.python.org/pypi/python-debianbts/
-[format string]: http://docs.python.org/library/string.html#format-string-syntax
-[jira]: http://www.atlassian.com/software/jira/
-[launchpadlib]: http://pypi.python.org/pypi/launchpadlib/
-[soappy]: http://pypi.python.org/pypi/SOAPpy/
-[sphinx]: http://sphinx.pocoo.org
-[sphinx issue tracker]: https://bitbucket.org/birkenfeld/sphinx/issues/
+[format string]: https://docs.python.org/library/string.html#format-string-syntax
+[sphinx]: https://sphinx-doc.org
+[sphinx issue tracker]: https://github.com/sphinx-doc/sphinx/issues/
