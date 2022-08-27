@@ -42,6 +42,7 @@ extensions = [
     "sphinxext.rediraffe",
     "sphinx_toolbox.confval",
     "myst_parser",
+    "sphinx_autoissues",
 ]
 myst_enable_extensions = ["colon_fence", "substitution", "replacements"]
 
@@ -91,4 +92,4 @@ intersphinx_mapping = {
 }
 
 issuetracker = "github"
-issuetracker_project = "tony/sphinx_autoissues"
+issuetracker_project = "tony/sphinx-autoissues"
