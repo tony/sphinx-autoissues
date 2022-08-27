@@ -12,7 +12,8 @@ leave it unset, and connect your own callback to the event {ref}`issuetracker-lo
 
 ## Event: Lookup issue
 
-```{confval} issuetracker-lookup-issue(app, tracker_config, issue_id)
+```{eval-rst}
+.. confval:: issuetracker-lookup-issue(app, tracker_config, issue_id)
 
    Emitted if the issue with the given ``issue_id`` should be looked up in the
    issue tracker.  Issue tracker configured is provided by ``tracker_config``.
