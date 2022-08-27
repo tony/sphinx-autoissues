@@ -123,7 +123,7 @@ single group, which matches the issue id.
 Normally the reference title will be the whole issue id. However you can also use a custom reference
 title:
 
-```{conval} issuetracker_title_template
+```{confval} issuetracker_title_template
 
 A `format string`_ template for the title of references created from
 plaintext issue ids.  The format string gets the :class:`Issue` object
