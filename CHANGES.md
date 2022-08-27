@@ -1,5 +1,68 @@
 # Changelog
 
+## sphinx-autoissues v0.0.1 (unreleased)
+
+### Docs to Markdown (#2)
+
+Documentation
+
+- moved from reStructuredText to markdown
+- Use furo theme
+
+### Overhaul (#1)
+
+Packaging:
+
+- Rename `sphinxcontrib-issuetracker` to `sphinx_autoissues`
+- build: Add pyproject.toml (Poetry)
+
+Documentation:
+
+- docs: `doc/` -> `docs/`
+
+Trackers:
+
+- Remove all trackers except Github
+
+Typing:
+
+- Add type annotations (`mypy --strict` compatible)
+- `sphinx_autoissues.types`
+
+Meta:
+
+- isort, black, flake8 configuration
+- Run through black and isort
+- Deprecate python 2.7 code via pyupgrade
+
+  ```sh
+  pip install pyupgrade autoflake; \
+  pyupgrade --py37 tests/**/*.py docs/**/*.py sphinx_autoissues/**/*.py; \
+  poetry run autoflake tests/**/*.py docs/**/*.py sphinx_autoissues/**/*.py -i --ignore-init-module-imports; \
+  make black isort
+  ```
+
+Tests:
+
+- Remove travis
+- Add github workflow
+- Migrate from `pytest_funccarg__` to `pytest.fixture` (see
+  [pytest 2.3 docs](https://docs.pytest.org/en/7.0.x/funcarg_compare.html#shortcomings-of-the-previous-pytest-funcarg-mechanism))
+- Remove old tests and start from scratch - I gave this 3 nights and my rationale is:
+  1. I am not familiar with old style pytest, and
+  2. I can't read pytest custom marks or test generations (see reason 6)
+  3. A lot of the old demo fixtures are pointing to issues and services e.g.
+     https://bitbucket.org/birkenfeld/sphinx that don't exist
+  4. My real use case is just GitHub
+  5. There's `sphinx.testing.fixtures` now
+  6. I prefer `pytest.mark.parametrize`
+
+Sphinx updates:
+
+- See [Sphinx docs on deprecated APIs](https://www.sphinx-doc.org/en/master/extdev/deprecated.html)
+
+## Earlier
+
 ### From sphinxcontrib-issuetracker
 
 #### sphinxcontrib-issuetracker 0.11 (Jan 17, 2013)
