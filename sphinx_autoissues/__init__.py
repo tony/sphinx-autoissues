@@ -274,6 +274,7 @@ def setup(app: Sphinx) -> t.Dict[str, t.Any]:
     # configuration specific to plaintext issue references
     app.add_config_value("issuetracker_plaintext_issues", True, "env")
     app.add_config_value("issuetracker_issue_pattern", re.compile(r"#(\d+)"), "env")
+    app.add_config_value("issuetracker_url_template", None, "env")
     app.add_config_value("issuetracker_title_template", None, "env")
     app.connect("builder-inited", add_css_file)
     app.connect("builder-inited", init_cache)

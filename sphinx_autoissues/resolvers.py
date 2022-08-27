@@ -47,6 +47,7 @@ from sphinx_autoissues.utils import is_issuetracker_env
 logger = logging.getLogger(__name__)
 
 GITHUB_API_URL = "https://api.github.com/repos/{0.project}/issues/{1}"
+GITHUB_ISSUE_URL_TEMPLATE = "https://github.com/{0.project}/issues/{1}"
 
 
 def check_project_with_username(tracker_config: TrackerConfig) -> None:
@@ -91,13 +92,15 @@ def lookup_github_issue(
             # Github limits applications hourly
             limit_hit = False
 
-        url = GITHUB_API_URL.format(tracker_config, issue_id)
+        api_url = GITHUB_API_URL.format(tracker_config, issue_id)
+        template_url = app.config.issuetracker_url_template or GITHUB_ISSUE_URL_TEMPLATE
+        url = template_url.format(tracker_config, issue_id)
+
         resolve_issues = app.config.issuetracker_resolve_issues
-        limit_hit = True
 
         if resolve_issues:
             if not limit_hit:
-                response = get(app, url)
+                response = get(app, api_url)
                 if response:
                     rate_remaining = response.headers.get("X-RateLimit-Remaining")
                     assert rate_remaining is not None
