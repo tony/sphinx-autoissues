@@ -98,3 +98,13 @@ title:
    If unset, the whole text matched by :confval:`issuetracker_issue_pattern` is
    used as reference title.
 ```
+
+```{eval-rst}
+.. confval:: issuetracker_url_template
+
+   A `format string <https://docs.python.org/3/library/string.html#format-string-syntax>`_
+   template for the title of references created from plaintext issue ids.
+   This is a fallback URL for when not resolving::
+
+     issuetracker_url_template = 'https://github.com/{0.project}/issues/{1}'
+```
