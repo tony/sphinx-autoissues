@@ -74,7 +74,7 @@ class IssueReferences(SphinxTransform):
         title_template = config.issuetracker_title_template
         if isinstance(issue_pattern, str):
             issue_pattern = re.compile(issue_pattern)
-        for node in self.document.findall(nodes.Text):
+        for node in self.document.traverse(nodes.Text):
             parent = node.parent
             if isinstance(parent, (nodes.literal, nodes.FixedTextElement)):
                 # ignore inline and block literal text
@@ -118,6 +118,7 @@ class IssueReferences(SphinxTransform):
             if not new_nodes:
                 # no issue references were found, move on to the next node
                 continue
+
             # extract the remaining text after the last issue reference, and
             # put it into a text node
             tail = text[last_issue_ref_end:]
@@ -143,6 +144,7 @@ def lookup_issue(
     or ``None`` if the issue wasn't found.
     """
     env = app.env
+
     if is_issuetracker_env(env):
         cache: IssueTrackerCache = env.issuetracker_cache
         if issue_id not in cache:
@@ -150,6 +152,7 @@ def lookup_issue(
                 "issuetracker-lookup-issue", tracker_config, issue_id
             )
             cache[issue_id] = issue
+
         return cache[issue_id]
     return None
 
@@ -163,7 +166,7 @@ def lookup_issues(app: Sphinx, doctree: nodes.document) -> None:
     The cache is available at ``app.env.issuetracker_cache`` and is pickled
     along with the environment.
     """
-    for node in doctree.findall(PendingIssueXRef):
+    for node in doctree.traverse(PendingIssueXRef):
         if node["reftype"] == "issue":
             lookup_issue(app, node["trackerconfig"], node["reftarget"])
 
@@ -179,7 +182,7 @@ def make_issue_reference(issue: Issue, content_node: nodes.inline) -> nodes.refe
     reference = nodes.reference()
     reference["refuri"] = issue.url
     if issue.title:
-        reference["reftitle"] = issue.title
+        reference["reftitle"] = nodes.Text(issue.title)
     if issue.closed:
         content_node["classes"].append("closed")
     reference.append(content_node)
@@ -220,7 +223,9 @@ def resolve_issue_reference(
         formatted_conttext = nodes.Text(conttext.format(issue=issue))
         formatted_contnode = nodes.inline(conttext, formatted_conttext, classes=classes)
         assert issue is not None
-        return make_issue_reference(issue, formatted_contnode)
+        new_node = make_issue_reference(issue, formatted_contnode)
+        return new_node
+
     return None
 
 
@@ -238,7 +243,7 @@ def init_transformer(app: Sphinx) -> None:
 def connect_builtin_tracker(app: Sphinx) -> None:
     if app.config.issuetracker:
         tracker = BUILTIN_ISSUE_TRACKERS[app.config.issuetracker.lower()]
-        app.connect(str("issuetracker-lookup-issue"), tracker)
+        app.connect("issuetracker-lookup-issue", tracker)
 
 
 def add_css_file(app: Sphinx) -> None:
@@ -265,6 +270,7 @@ def setup(app: Sphinx) -> t.Dict[str, t.Any]:
     app.add_config_value("issuetracker", None, "env")
     app.add_config_value("issuetracker_project", None, "env")
     app.add_config_value("issuetracker_url", None, "env")
+    app.add_config_value("issuetracker_resolve_issues", False, "env")
     # configuration specific to plaintext issue references
     app.add_config_value("issuetracker_plaintext_issues", True, "env")
     app.add_config_value("issuetracker_issue_pattern", re.compile(r"#(\d+)"), "env")
@@ -278,6 +284,6 @@ def setup(app: Sphinx) -> t.Dict[str, t.Any]:
 
     return {
         "version": "1.0",
-        "parallel_read_safe": True,
-        "parallel_write_safe": True,
+        "parallel_read_safe": False,
+        "parallel_write_safe": False,
     }

@@ -72,8 +72,7 @@ def get(app: Sphinx, url: str) -> t.Optional[requests.Response]:
     if response.status_code == requests.codes.ok:
         return response
     elif response.status_code != requests.codes.not_found:
-        msg = "GET {0.url} failed with code {0.status_code}"
-        logger.warning(msg.format(response))
+        logger.warning(f"GET {response.url} failed with code {response.status_code}")
 
     return None
 
@@ -92,27 +91,44 @@ def lookup_github_issue(
             # Github limits applications hourly
             limit_hit = False
 
-        if not limit_hit:
-            url = GITHUB_API_URL.format(tracker_config, issue_id)
-            response = get(app, url)
-            if response:
-                rate_remaining = response.headers.get("X-RateLimit-Remaining")
-                assert rate_remaining is not None
-                if rate_remaining.isdigit() and int(rate_remaining) == 0:
-                    logger.warning("Github rate limit hit")
-                    env.github_rate_limit = (time.time(), True)
-                issue = response.json()
-                closed = issue["state"] == "closed"
-                return Issue(
-                    id=issue_id,
-                    title=issue["title"],
-                    closed=closed,
-                    url=issue["html_url"],
-                )
-        else:
+        url = GITHUB_API_URL.format(tracker_config, issue_id)
+        resolve_issues = app.config.issuetracker_resolve_issues
+        limit_hit = True
+
+        if resolve_issues:
+            if not limit_hit:
+                response = get(app, url)
+                if response:
+                    rate_remaining = response.headers.get("X-RateLimit-Remaining")
+                    assert rate_remaining is not None
+                    if rate_remaining.isdigit() and int(rate_remaining) == 0:
+                        logger.warning("Github rate limit hit")
+                        env.github_rate_limit = (time.time(), True)
+                    issue = response.json()
+                    closed = issue["state"] == "closed"
+                    return Issue(
+                        id=issue_id,
+                        title=issue["title"],
+                        closed=closed,
+                        url=issue["html_url"],
+                    )
             logger.warning(
-                "Github rate limit exceeded, not resolving issue {0}".format(issue_id)
+                f"Github rate limit exceeded, not resolving title for {issue_id}"
             )
+            return Issue(
+                id=issue_id,
+                title=f"#{issue_id}",
+                closed=False,
+                url=url,
+            )
+        else:
+            return Issue(
+                id=issue_id,
+                title=f"#{issue_id}",
+                closed=False,
+                url=url,
+            )
+
     return None
 
 
