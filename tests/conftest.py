@@ -37,14 +37,25 @@ def make_app_params(
     tmp_path: pathlib.Path,
 ) -> t.Generator[t.Callable[[t.Any], AppParams], None, None]:
     def fn(*args: object, **kwargs: t.Any) -> AppParams:
-        args, kwargs = app_params
-        kwargs.setdefault("confoverrides", {"extensions": "sphinx_autoissues"})
-        kwargs.setdefault("buildername", "html")
-        kwargs.setdefault("status", None)
-        kwargs.setdefault("warning", None)
-        kwargs.setdefault("freshenv", True)
-        kwargs["srcdir"] = sphinx_path(tmp_path)
-        return args, kwargs
+        args, kws = app_params
+        kws.setdefault("confoverrides", {"extensions": "sphinx_autoissues"})
+        kws.setdefault("buildername", "html")
+        kws.setdefault("status", None)
+        kws.setdefault("warning", None)
+        kws.setdefault("freshenv", True)
+        kws["srcdir"] = sphinx_path(tmp_path)
+
+        for k, v in kwargs.items():
+            if k == "confoverrides":
+                assert isinstance(v, dict)
+                if "extensions" not in v:
+                    v["extensions"] = []
+                if "sphinx_autoissues" not in v["extensions"]:
+                    v["extensions"].append("sphinx_autoissues")
+
+                kws["confoverrides"].update(**v)
+
+        return args, kws
 
     yield fn
 
