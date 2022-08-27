@@ -62,6 +62,15 @@ pygments_dark_style = "monokai"
 
 html_theme = "furo"
 html_static_path: t.List[str] = []
+html_sidebars = {
+    "**": [
+        "sidebar/scroll-start.html",
+        "sidebar/brand.html",
+        "sidebar/search.html",
+        "sidebar/navigation.html",
+        "sidebar/scroll-end.html",
+    ]
+}
 
 # sphinx.ext.autodoc
 autoclass_content = "both"
