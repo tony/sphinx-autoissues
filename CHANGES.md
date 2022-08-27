@@ -1,6 +1,14 @@
 # Changelog
 
-## sphinx-autoissues v0.0.1 (unreleased)
+## sphinx-autoissues v0.0.1 (2022-08-27)
+
+### Resolution disabled by default
+
+- New option: `issuetracker_resolve_issues`
+
+  Default `False`. Set to `True` to re-enable.
+
+- When a URL isn't resolved, the URL will fall back to `issuetracker_url_template`
 
 ### Docs to Markdown (#2)
 

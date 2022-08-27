@@ -21,8 +21,6 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-
-
 """
     sphinx_autoissues
     =================
@@ -35,9 +33,7 @@
     .. moduleauthor::  Tony Narlock <tony@git-pull.com,
        Sebastian Wiesner  <lunaryorn@gmail.com>
 """
-
-
-__version__ = "0.0.1a1"
+__version__ = "0.0.1"
 
 import re
 import typing as t
