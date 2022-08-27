@@ -23,6 +23,11 @@ but a lot has happened tooling wise.
 We've incorporated the python toolset from git-pull projects like tmuxp / libvcs / cihai: mypy,
 black, isort, pytest, markdown docs w/ doctests, github workflows, etc. In addition:
 
+- Title resolution via GitHub disabled by default (to avoid rate limits)
+
+  Re-enable by setting `issuetracker_resolve_issues = True`
+
+- Trackers other than GitHub removed
 - Python 2.x support removed via `pyupgrade` and by hand
   - Compat import, `__future__` statements
 - Poetry
