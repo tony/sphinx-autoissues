@@ -89,7 +89,7 @@ Sphinx updates:
 
 - Remove {confval}`issuetracker_expandtitle`, use `issuetracker_title_template = '{issue.title}'`
   instead
-- Rename {event}`issuetracker-resolve-issue` to {event}`issuetracker-lookup-issue`
+- Rename `issuetracker-resolve-issue` to {ref}`issuetracker-lookup-issue`
 
 ##### Other changes
 
@@ -116,7 +116,7 @@ Sphinx updates:
   username now
 - Custom resolvers must return {class}`~sphinxcontrib.issuetracker.Issue` objects instead of
   dictionaries now
-- Change signature of {event}`issuetracker-resolve-issue`
+- Change signature of `issuetracker-resolve-issue`
 
 ##### Other changes
 
