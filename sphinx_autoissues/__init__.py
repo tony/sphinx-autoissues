@@ -246,6 +246,7 @@ def add_css_file(app: Sphinx) -> None:
 
 
 def copy_stylesheet(app: Sphinx, exception: Exception) -> None:
+    assert app.builder is not None
     if app.builder.name != "html" or exception:
         return
     logger.info("Copying issuetracker stylesheet... ", nonl=True)
@@ -256,7 +257,7 @@ def copy_stylesheet(app: Sphinx, exception: Exception) -> None:
 
 
 def setup(app: Sphinx) -> t.Dict[str, t.Any]:
-    app.require_sphinx("5.0")
+    app.require_sphinx("4.0")
     app.add_role("issue", IssueRole())
     app.add_event("issuetracker-lookup-issue")
     app.connect("builder-inited", connect_builtin_tracker)
