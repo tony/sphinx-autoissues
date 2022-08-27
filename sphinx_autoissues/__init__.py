@@ -71,7 +71,7 @@ class IssueReferences(SphinxTransform):
         config = self.document.settings.env.config
         tracker_config = TrackerConfig.from_sphinx_config(config)
         issue_pattern = config.issuetracker_issue_pattern
-        title_template = None
+        title_template = config.issuetracker_title_template
         if isinstance(issue_pattern, str):
             issue_pattern = re.compile(issue_pattern)
         for node in self.document.findall(nodes.Text):
