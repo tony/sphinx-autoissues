@@ -1,5 +1,11 @@
 # Changelog
 
+## sphinx-autoissues v0.0.2 (unreleased)
+
+### Development
+
+- Add [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) (#3)
+
 ## sphinx-autoissues v0.0.1 (2022-08-27)
 
 ### Resolution disabled by default
