@@ -27,7 +27,7 @@ keywords = [
   "sphinx",
   "docutils",
   "issues",
-  "pull requests"
+  "pull requests",
 ]
 homepage = "https://sphinx-autoissues.git-pull.com"
 readme = "README.md"
@@ -80,6 +80,7 @@ isort = "*"
 
 ### Lint ###
 flake8 = "*"
+flake8-bugbear = "^22.8.23"
 mypy = "*"
 types-docutils = "^0.19.0"
 types-requests = "^2.28.9"
@@ -103,7 +104,14 @@ docs = [
 test = ["pytest", "pytest-rerunfailures", "pytest-watcher", "mock"]
 coverage = ["codecov", "coverage", "pytest-cov"]
 format = ["black", "isort"]
-lint = ["flake8", "mypy", "types-docutils", "types-requests", "types-mock"]
+lint = [
+  "flake8",
+  "flake8-bugbear",
+  "mypy",
+  "types-docutils",
+  "types-requests",
+  "types-mock",
+]
 
 [tool.mypy]
 strict = true
