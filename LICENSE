@@ -1,5 +1,8 @@
 Copyright (c) 2022- Tony Narlock <tony@git-pull.com> All rights reserved.
 
+All commits starting with my 2022 rework can be re-licensed
+under MIT-0, MIT, BSD 2-Clause, BSD 3-Clause, ISC, or Apache 2.
+
 Based on work from sphinxcontrib-issuetracker, 
 https://github.com/ignatenkobrain/sphinxcontrib-issuetracker
 
